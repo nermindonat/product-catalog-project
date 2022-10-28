@@ -6,13 +6,18 @@ import Login from "./Login";
 import ProductList from "../components/ProductList";
 import RegisterInput from "../components/RegisterInput";
 import Register from "./Register";
+import Link from 'next/link'
 
 
 export default function Home() {
   return (
    <div className="">
     <Header />
-    <Register />
+    {/* <Register /> */}
+    <Login />
+    <Link href="/home">
+
+</Link>
    </div>
   );
 }

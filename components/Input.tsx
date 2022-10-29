@@ -12,7 +12,7 @@ function Input() {
 
   return (
     <div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
               htmlFor="name"
@@ -56,7 +56,7 @@ function Input() {
               placeholder="Phone Number"    
               onChange={e => {setPhoneNum(parseInt(e.target.value))}}        
             />
-          </div>
+          </div> */}
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
@@ -88,7 +88,7 @@ function Input() {
           />
           <p className="text-red-500 text-xs italic">Please enter a password.</p>
         </div>
-        <div className="mb-6">
+        {/* <div className="mb-6">
           <label
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="password"
@@ -102,7 +102,7 @@ function Input() {
             placeholder="******************"
           />
           <p className="text-red-500 text-xs italic">Please re-enter password.</p>
-        </div>
+        </div> */}
       </div>
   );
 }

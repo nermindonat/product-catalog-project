@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 function Header() {
   const router = useRouter();
@@ -42,15 +42,17 @@ function Header() {
               </svg>
             </button>
           </div>
-          <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
-            <a
-              href="#"
-              className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900"
+          <div className="hidden items-center justify-end md:flex">
+            <select
+              id="countries"
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
-              Sign in
-            </a>
+              <option selected>TR</option>
+              <option value="EN">EN</option>
+            </select>
             <Link
-              href={""} onClick={() => router.push('/Register')}
+              href={""}
+              onClick={() => router.push("/Register")}
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Kayıt Ol

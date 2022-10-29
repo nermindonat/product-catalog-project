@@ -79,26 +79,28 @@ function Navbar() {
             </div>
           </nav>
           <div className="hidden items-center justify-end md:flex md:flex-1 lg:w-0">
+            <select id="countries" className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option selected>TR</option>
+  <option value="EN">EN</option>
+</select>
             <a
               href="#"
-              className="whitespace-nowrap text-base rounded-md border border-transparent  px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-900 shadow-sm hover:bg-indigo-100"
+              className="ml-4 whitespace-nowrap text-base rounded-md border border-gray-300  px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-900 shadow-sm hover:bg-indigo-100"
             >
               Sepetim
             </a>
             <a
               href="#"
-              className="ml-8 inline-flex items-center justify-center rounded-md border border-transparent  px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-900 shadow-sm hover:bg-indigo-100"
+              className="ml-4 inline-flex items-center justify-center rounded-md border border-gray-300  px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-900 shadow-sm hover:bg-indigo-100"
             >
               Profil
             </a>
           </div>
           <div className="relative ml-3">
-          <div>
-            <button type="button" className="flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+            <button type="button" className="flex rounded-full border-gray-300 bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
               <span className="sr-only">Open user menu</span>
               <img className="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt=""/>
             </button>
-          </div>
           {/* <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
             <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-0">Your Profile</a>
             <a href="#" className="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabIndex="-1" id="user-menu-item-1">Settings</a>

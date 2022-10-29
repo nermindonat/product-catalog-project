@@ -16,7 +16,7 @@ function loginForm() {
             href={""}
             onClick={() => router.push("/Home")}
           >
-            Sign In
+            Giriş Yap
           </Link>
 
           <a

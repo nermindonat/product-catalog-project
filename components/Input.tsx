@@ -1,14 +1,21 @@
-import React,{useState} from 'react';
+import React, { useState } from "react";
 
-function RegisterInput() {
-    
+function Input() {
+  const [name, setName] = useState('');
+  const [lastname, setLastname] = useState('')
+  const [phoneNum, setPhoneNum] = useState(0);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState(0);
+  const [passwordConfirm, setPasswordConfirm] = useState();
 
-    return (
-        <div>
+
+
+  return (
+    <div>
         <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
+              htmlFor="name"
             >
               Name
             </label>
@@ -17,20 +24,22 @@ function RegisterInput() {
               id="email"
               type="text"
               placeholder="Name"
+              onChange={e => {setName(e.target.value)}}
             />
           </div>
           <div className="mb-4">
             <label
               className="block text-gray-700 text-sm font-bold mb-2"
-              htmlFor="email"
+              htmlFor="lastname"
             >
-              Surname
+              Lastname
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="text"
-              placeholder="Surname"
+              placeholder="Lastname"
+              onChange={e => {setLastname(e.target.value)}}
             />
           </div>
           <div className="mb-4">
@@ -42,9 +51,25 @@ function RegisterInput() {
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              id="phoneNumber"
+              type="text"
+              placeholder="Phone Number"    
+              onChange={e => {setPhoneNum(parseInt(e.target.value))}}        
+            />
+          </div>
+          <div className="mb-4">
+            <label
+              className="block text-gray-700 text-sm font-bold mb-2"
+              htmlFor="lastname"
+            >
+              Email
+            </label>
+            <input
+              className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
-              type="number"
-              placeholder="Phone Number"            
+              type="text"
+              placeholder="Email"
+              onChange={e => {setEmail(e.target.value)}}
             />
           </div>
         <div className="mb-6">
@@ -59,6 +84,7 @@ function RegisterInput() {
             id="password"
             type="password"
             placeholder="******************"
+            onChange={e => {setPassword(parseInt(e.target.value))}}  
           />
           <p className="text-red-500 text-xs italic">Please enter a password.</p>
         </div>
@@ -67,7 +93,7 @@ function RegisterInput() {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="password"
           >
-            Password Again
+            Password Confirm
           </label>
           <input
             className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -78,7 +104,7 @@ function RegisterInput() {
           <p className="text-red-500 text-xs italic">Please re-enter password.</p>
         </div>
       </div>
-    );
+  );
 }
 
-export default RegisterInput;
+export default Input;

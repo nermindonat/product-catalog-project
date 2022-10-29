@@ -1,6 +1,9 @@
 import React from "react";
+import Link from "next/link";
+import { useRouter } from 'next/router'
 
 function Header() {
+  const router = useRouter();
   return (
     <div className="relative bg-white">
       <div className="mx-auto px-4 sm:px-4">
@@ -46,12 +49,12 @@ function Header() {
             >
               Sign in
             </a>
-            <a
-              href="#"
+            <Link
+              href={""} onClick={() => router.push('/Register')}
               className="ml-8 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
             >
               Kayıt Ol
-            </a>
+            </Link>
           </div>
         </div>
       </div>

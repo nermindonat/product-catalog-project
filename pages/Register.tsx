@@ -1,11 +1,16 @@
 import React from "react";
-import Form from "../components/Form";
+import Header from "../components/Header";
+import RegisterForm from "../components/RegisterForm";
 
 function Register() {
   return (
+    <>
+    <Header />
     <div className="flex mt-20  items-center justify-center">
-      <Form />
+      <RegisterForm />
     </div>
+    </>
+    
   );
 }
 

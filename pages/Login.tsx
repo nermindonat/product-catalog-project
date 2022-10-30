@@ -1,11 +1,11 @@
 import React from 'react';
-import Form from '../components/Form';
+import LoginForm from '../components/LoginForm';
 
 function Login() {
     
     return (
         <div className='flex mt-20  items-center justify-center'>
-            <Form />
+            <LoginForm />
         </div>
     );
 }

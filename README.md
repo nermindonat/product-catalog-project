@@ -2,12 +2,24 @@ I am developing this project with Next.js, TypeScript and Tailwind css. A dynami
 Below are the interface pictures of my project.
 
 
-                                                          HOME PAGE
-
-![image](https://user-images.githubusercontent.com/70170606/198604290-211b1b5f-cc26-45c8-bb58-052a4b09fee7.png)
-
-
                                                           LOGIN PAGE
-                                                          
-![image](https://user-images.githubusercontent.com/70170606/198843105-6eeb689d-5f4c-4841-9d8c-74de8e083529.png)
 
+![image](https://user-images.githubusercontent.com/70170606/198886293-4ae640a7-af9b-4512-aa4b-b44ad6e36dfd.png)
+
+
+                                                          HOME PAGE 
+
+![image](https://user-images.githubusercontent.com/70170606/198886447-1ac27789-3f7d-44c2-a24d-1c70d628c1ec.png)
+
+
+
+                                                          REGISTER PAGE 
+
+![image](https://user-images.githubusercontent.com/70170606/198886569-c850d18e-f8e0-4d36-bac9-084af743d2b6.png)
+
+
+
+                                                          PRODUCT DETAIL PAGE
+                                                          
+                                                          
+![image](https://user-images.githubusercontent.com/70170606/198886678-c3e19a1c-58d4-4bf5-946d-18d69707d979.png)

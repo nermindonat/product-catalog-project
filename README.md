@@ -1,3 +1,5 @@
+                                                         PRODUCT CATALOG PROJECT
+
 I am developing this project with Next.js, TypeScript and Tailwind css. This is my first project that I developed with these technologies. A dynamic product catalog website. 
 Below are the interface pictures of my project.
 

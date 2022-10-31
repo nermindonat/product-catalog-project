@@ -1,34 +1,71 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+
+type FormInputs = {
+  name: string;
+  lastname: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+};
+
+const validationSchema = Yup.object().shape({
+  name: Yup.string().nullable().required("Name is required"),
+  lastname: Yup.string().nullable().required("Lastname is required"),
+  phoneNumber: Yup.string().required("Phone number is required")
+  .length(10, "Please enter a valid mobile number."),
+  email: Yup.string().nullable().required("Email is required").email("Email is invalid"),
+  password: Yup.string()
+    .required("Password is required")
+    .min(6, "Password must be at least 6 characters")
+    .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
+    .max(20, "password must be no more than 20 characters"),
+  passwordConfirm: Yup.string()
+  .oneOf([Yup.ref('password'), null], 'Passwords must match')  
+});
 
 function RegisterForm() {
-  const router = useRouter();
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [phoneNum, setPhoneNum] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    setName("");
-    setLastname("");
-    setPhoneNum("");
-    setEmail("");
-    setPassword("");
-    setPasswordConfirm("");
-    console.log(name, lastname,phoneNum, email, password);
+  const router = useForm();
+  const { register, formState, handleSubmit } = useForm<FormInputs>({
+    resolver: yupResolver(validationSchema),
+  });
 
-    alert("Başarıyla kaydedildi..");
+  const onSubmit = (data: FormInputs) => {
+    console.log({ email: data.email, password: data.password });
+
+
+  // const router = useRouter();
+  // const [name, setName] = useState("");
+  // const [lastname, setLastname] = useState("");
+  // const [phoneNum, setPhoneNum] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  // const handleSubmit = async (e: any) => {
+  //   e.preventDefault();
+  //   setName("");
+  //   setLastname("");
+  //   setPhoneNum("");
+  //   setEmail("");
+  //   setPassword("");
+  //   setPasswordConfirm("");
+  //   console.log(name, lastname,phoneNum, email, password);
+
+  //   alert("Başarıyla kaydedildi..");
   };
 
   return (
     <div className="w-full max-w-sm">
       <form
         className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
       >
         <div className="mb-4">
           <label
@@ -42,11 +79,12 @@ function RegisterForm() {
             id="name"
             type="text"
             placeholder="Name"
-            onChange={(e) => {
-              setName(e.target.value);
-            }}
-            required
+            {...register("name")}
+            autoComplete="off"
           />
+          <p className="text-red-500 text-xs italic">
+            {formState.errors.name?.message}
+          </p>
         </div>
         <div className="mb-4">
           <label
@@ -60,10 +98,12 @@ function RegisterForm() {
             id="name"
             type="text"
             placeholder="Lastname"
-            onChange={(e) => {
-              setLastname(e.target.value);
-            }}
+            {...register("lastname")}
+            autoComplete="off"
           />
+          <p className="text-red-500 text-xs italic">
+            {formState.errors.lastname?.message}
+          </p>
         </div>
         <div className="mb-4">
           <label
@@ -77,10 +117,12 @@ function RegisterForm() {
             id="number"
             type="text"
             placeholder="Phone Number"
-            onChange={(e) => 
-              setPhoneNum(e.target.value)
-            }
+            {...register("phoneNumber")}
+            autoComplete="off"
           />
+          <p className="text-red-500 text-xs italic">
+            {formState.errors.phoneNumber?.message}
+          </p>
         </div>
         <div className="mb-4">
           <label
@@ -94,10 +136,12 @@ function RegisterForm() {
             id="email"
             type="email"
             placeholder="Email"
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
+            {...register("email")}
+            autoComplete="off"
           />
+          <p className="text-red-500 text-xs italic">
+            {formState.errors.email?.message}
+          </p>
         </div>
         <div className="mb-6">
           <label
@@ -111,10 +155,11 @@ function RegisterForm() {
             id="password"
             type="password"
             placeholder="****************"
-            onChange={(e) => setPassword(e.target.value)}
+            {...register("password")}
+            autoComplete="off"
           />
           <p className="text-red-500 text-xs italic">
-            Please enter a password.
+            {formState.errors.password?.message}
           </p>
         </div>
         <div className="mb-6">
@@ -129,19 +174,18 @@ function RegisterForm() {
             id="password"
             type="password"
             placeholder="****************"
-            onChange={(e) => 
-              setPasswordConfirm(e.target.value)
-            }
+            {...register("passwordConfirm")}
+            autoComplete="off"
           />
           <p className="text-red-500 text-xs italic">
-            Please re-enter password.
+            {formState.errors.passwordConfirm?.message}
           </p>
         </div>
 
         <div className="flex items-center justify-center">
           <button
             className="bg-indigo-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            onClick={() => router.push("/Home")}
+            // onClick={() => router.push("/Home")}
           >
             Kayıt Ol
           </button>

@@ -37,7 +37,7 @@ function RegisterForm() {
   });
 
   const onSubmit = (data: FormInputs) => {
-    console.log({ email: data.email, password: data.password });
+    console.log({name: data.name, lastname: data.lastname, phoneNumber: data.phoneNumber, email: data.email, password: data.password });
 
 
   // const router = useRouter();
@@ -115,10 +115,12 @@ function RegisterForm() {
           <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="number"
-            type="text"
-            placeholder="Phone Number"
+            type="tel"
+            placeholder="505 888-88-88"
+            // pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}"
             {...register("phoneNumber")}
-            autoComplete="off"
+            // autoComplete="off"
+            
           />
           <p className="text-red-500 text-xs italic">
             {formState.errors.phoneNumber?.message}

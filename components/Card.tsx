@@ -12,11 +12,11 @@ function ProductList() {
         className="rounded-md border border-gray-300 shadow-xl group "
         onClick={() => router.push("/ProductDetail")}
       >
-        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
+        <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
           <img
             src="https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
             alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-            className="h-full w-full object-cover object-center group-hover:opacity-75"
+            className="h-full w-full object-cover object-center rounded-md group-hover:opacity-75"
           />
         </div>
         <div className="flex flex-row items-center justify-between">

@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-
+import axios from "axios"
+//   Access-Control-Allow-Origin: *
 
 type FormInputs = {
   email: string;
   password: string;
 };
+const basePath = 'https://assignment-api.piton.com.tr/api/v1/user/login';
+// const loginApi = '/api/v1/user/login'
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lcm1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NzIxMzM2MiwiZXhwIjoxNjkzMTMzMzYyfQ.q8L1W7aKQZp_cGLY5l1y7-awjvxqC2Y5IWS-wFEVdtM";
+
 
 const validationSchema = Yup.object().shape({
   email: Yup.string().nullable().required("Email is required").email("Email is invalid"),
@@ -21,18 +26,42 @@ const validationSchema = Yup.object().shape({
 });
 
 function LoginForm() {
+  const [login, setLogin] = useState({
+    email: "",
+    password: "",
+  })
+
   const router = useForm();
   const { register, formState, handleSubmit } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: FormInputs) => {
-    console.log({ email: data.email, password: data.password });
+    // console.log({ email: data.email, password: data.password });
   };
 
-  // const handlerChange = (e:any, data:any) => {
-  //   data[e.target.value] = e.target.value;
-  // }
+  
+  axios.post(basePath, {
+    
+     
+  }, {
+    headers: {
+      'Content-Type' : 'application/json',
+      'Authorization': `Bearer ${token}` 
+    }
+  })
+  .then((res) => {
+    console.log(res.data);
+  })
+  .catch((error) => {
+    console.error(error);
+    
+  })
+
+  const handleChange = (e:any, data:any) => {
+    data[e.target.id] = e.target.value;
+  }
+
 
   return (
     <div className="w-full max-w-sm">
@@ -54,7 +83,7 @@ function LoginForm() {
             placeholder="Email"
             {...register("email")}
             autoComplete="off"
-            // onChange={(e) => {handlerChange(e)}}
+            onChange={(e) => {handleChange(e, login)}}
           />
           <p className="text-red-500 text-xs italic">
             {formState.errors.email?.message}
@@ -74,6 +103,7 @@ function LoginForm() {
             type="password"
             {...register("password")}
             placeholder="***************"
+            onChange={(e) => {handleChange(e, login)}}
           />
           <p className="text-red-500 text-xs italic">
             {formState.errors.password?.message}

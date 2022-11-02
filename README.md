@@ -21,7 +21,7 @@ Below are the interface pictures of my project.
 
                                                           REGISTER PAGE 
 
-![image](https://user-images.githubusercontent.com/70170606/198886569-c850d18e-f8e0-4d36-bac9-084af743d2b6.png)
+![image](https://user-images.githubusercontent.com/70170606/199502224-6287997e-bd82-47aa-af72-852cde5b2fef.png)
 
 
 

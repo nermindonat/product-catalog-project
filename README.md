@@ -4,9 +4,12 @@ I am developing this project with Next.js, TypeScript and Tailwind css. This is 
 Below are the interface pictures of my project.
 
 
+
+
                                                           LOGIN PAGE
 
-![image](https://user-images.githubusercontent.com/70170606/198886293-4ae640a7-af9b-4512-aa4b-b44ad6e36dfd.png)
+![image](https://user-images.githubusercontent.com/70170606/199501705-afe0a47e-47a0-4d16-89be-3cc9e1e9fdf8.png)
+
 
 
                                                           HOME PAGE 
@@ -15,9 +18,11 @@ Below are the interface pictures of my project.
 
 
 
+
                                                           REGISTER PAGE 
 
 ![image](https://user-images.githubusercontent.com/70170606/198886569-c850d18e-f8e0-4d36-bac9-084af743d2b6.png)
+
 
 
 

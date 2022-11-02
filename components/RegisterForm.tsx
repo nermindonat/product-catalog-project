@@ -31,7 +31,7 @@ const validationSchema = Yup.object().shape({
 
 function RegisterForm() {
 
-  const router = useForm();
+  const router = useRouter();
   const { register, formState, handleSubmit } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
@@ -186,8 +186,8 @@ function RegisterForm() {
 
         <div className="flex items-center justify-center">
           <button
-            className="bg-indigo-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            // onClick={() => router.push("/Home")}
+            className="bg-[#4F46E5] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            // onClick={() => router.push('/Home')}
           >
             Kayıt Ol
           </button>

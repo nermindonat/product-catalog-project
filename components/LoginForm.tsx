@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import axios from "axios"
+
 //   Access-Control-Allow-Origin: *
 
 type FormInputs = {
@@ -31,22 +32,20 @@ function LoginForm() {
     password: "",
   })
 
-  const router = useForm();
+  const router = useRouter();
   const { register, formState, handleSubmit } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: FormInputs) => {
-    // console.log({ email: data.email, password: data.password });
+    console.log({ email: data.email, password: data.password });
   };
 
   
-  axios.post(basePath, {
-    
-     
-  }, {
+  axios.post(basePath,  {
     headers: {
       'Content-Type' : 'application/json',
+      // "Access-Control-Allow-Origin": '*',
       'Authorization': `Bearer ${token}` 
     }
   })
@@ -61,7 +60,11 @@ function LoginForm() {
   const handleChange = (e:any, data:any) => {
     data[e.target.id] = e.target.value;
   }
-
+  
+  // const handleClick = (e:any) => {
+  //   e.preventDefault();
+  //   router.push('/Home')
+  // }
 
   return (
     <div className="w-full max-w-sm">
@@ -126,11 +129,10 @@ function LoginForm() {
 
         <div className="flex items-center justify-between">
           <button
-            className="bg-indigo-600 hover:bg-blue-700 text-white font-bold py-2 px-4 
+            className="bg-[#4F46E5] hover:bg-blue-700 text-white font-bold py-2 px-4 
             rounded focus:outline-none focus:shadow-outline"
-            type="submit"
-
-         
+            type="submit" 
+        
           >
             Giriş Yap
           </button>

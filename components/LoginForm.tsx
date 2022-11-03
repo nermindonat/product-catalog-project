@@ -1,10 +1,12 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
+import loginImage from "../assets/logo.png"
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import axios from "axios"
+import axios from "axios";
 
 //   Access-Control-Allow-Origin: *
 
@@ -12,25 +14,28 @@ type FormInputs = {
   email: string;
   password: string;
 };
-const basePath = 'https://assignment-api.piton.com.tr/api/v1/user/login';
+const basePath = "https://assignment-api.piton.com.tr/api/v1/user/login";
 // const loginApi = '/api/v1/user/login'
-const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lcm1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NzIxMzM2MiwiZXhwIjoxNjkzMTMzMzYyfQ.q8L1W7aKQZp_cGLY5l1y7-awjvxqC2Y5IWS-wFEVdtM";
-
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lcm1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NzIxMzM2MiwiZXhwIjoxNjkzMTMzMzYyfQ.q8L1W7aKQZp_cGLY5l1y7-awjvxqC2Y5IWS-wFEVdtM";
 
 const validationSchema = Yup.object().shape({
-  email: Yup.string().nullable().required("Email is required").email("Email is invalid"),
+  email: Yup.string()
+    .nullable()
+    .required("Email is required")
+    .email("Email is invalid"),
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password must be at least 6 characters")
-    .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
-    .max(20, "password must be no more than 20 characters")
+    // .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
+    .max(20, "password must be no more than 20 characters"),
 });
 
 function LoginForm() {
   const [login, setLogin] = useState({
     email: "",
     password: "",
-  })
+  });
 
   const router = useRouter();
   const { register, formState, handleSubmit } = useForm<FormInputs>({
@@ -41,26 +46,25 @@ function LoginForm() {
     console.log({ email: data.email, password: data.password });
   };
 
-  
-  axios.post(basePath,  {
-    headers: {
-      'Content-Type' : 'application/json',
-      // "Access-Control-Allow-Origin": '*',
-      'Authorization': `Bearer ${token}` 
-    }
-  })
-  .then((res) => {
-    console.log(res.data);
-  })
-  .catch((error) => {
-    console.error(error);
-    
-  })
+  axios
+    .post(basePath, {
+      headers: {
+        "Content-Type": "application/json",
+        // "Access-Control-Allow-Origin": '*',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((res) => {
+      console.log(res.data);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
 
-  const handleChange = (e:any, data:any) => {
+  const handleChange = (e: any, data: any) => {
     data[e.target.id] = e.target.value;
-  }
-  
+  };
+
   // const handleClick = (e:any) => {
   //   e.preventDefault();
   //   router.push('/Home')
@@ -68,6 +72,9 @@ function LoginForm() {
 
   return (
     <div className="w-full max-w-sm">
+      <div className="flex items-center justify-center">
+        <Image src={loginImage} className="object-cover h-20 w-40" alt="" />
+      </div>
       <form
         className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4"
         onSubmit={handleSubmit(onSubmit)}
@@ -86,7 +93,9 @@ function LoginForm() {
             placeholder="Email"
             {...register("email")}
             autoComplete="off"
-            onChange={(e) => {handleChange(e, login)}}
+            onChange={(e) => {
+              handleChange(e, login);
+            }}
           />
           <p className="text-red-500 text-xs italic">
             {formState.errors.email?.message}
@@ -106,7 +115,9 @@ function LoginForm() {
             type="password"
             {...register("password")}
             placeholder="***************"
-            onChange={(e) => {handleChange(e, login)}}
+            onChange={(e) => {
+              handleChange(e, login);
+            }}
           />
           <p className="text-red-500 text-xs italic">
             {formState.errors.password?.message}
@@ -131,8 +142,7 @@ function LoginForm() {
           <button
             className="bg-[#4F46E5] hover:bg-blue-700 text-white font-bold py-2 px-4 
             rounded focus:outline-none focus:shadow-outline"
-            type="submit" 
-        
+            type="submit"
           >
             Giriş Yap
           </button>

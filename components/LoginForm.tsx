@@ -27,23 +27,29 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password must be at least 6 characters")
-    // .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
-    .max(20, "password must be no more than 20 characters"),
+    .max(20, "password must be no more than 20 characters")
+    .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
 });
 
 function LoginForm() {
+  const router = useRouter();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  const router = useRouter();
-  const { register, formState, handleSubmit } = useForm<FormInputs>({
+  
+  const { register, formState: {errors}, handleSubmit, reset} = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: FormInputs) => {
     console.log({ email: data.email, password: data.password });
+    // setLogin();
+    reset()
+    router.push("/Home")
   };
 
   axios
@@ -62,13 +68,17 @@ function LoginForm() {
     });
 
   const handleChange = (e: any, data: any) => {
+    e.preventDefault();
     data[e.target.id] = e.target.value;
+    setEmail("");
+    setPassword("");
   };
+  
 
-  // const handleClick = (e:any) => {
-  //   e.preventDefault();
-  //   router.push('/Home')
-  // }
+  const onError = (errors: any) => {
+    console.log(errors);
+    
+  }
 
   return (
     <div className="w-full max-w-sm">
@@ -77,7 +87,7 @@ function LoginForm() {
       </div>
       <form
         className="bg-white shadow-lg rounded px-8 pt-6 pb-8 mb-4"
-        onSubmit={handleSubmit(onSubmit)}
+        onSubmit={handleSubmit(onSubmit, onError)}
       >
         <div className="mb-4">
           <label
@@ -98,7 +108,7 @@ function LoginForm() {
             }}
           />
           <p className="text-red-500 text-xs italic">
-            {formState.errors.email?.message}
+            {errors.email?.message}
           </p>
         </div>
 
@@ -120,7 +130,7 @@ function LoginForm() {
             }}
           />
           <p className="text-red-500 text-xs italic">
-            {formState.errors.password?.message}
+            {errors.password?.message}
           </p>
         </div>
         <div className="flex items-center mb-4">

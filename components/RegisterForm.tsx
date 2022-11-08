@@ -30,8 +30,16 @@ const validationSchema = Yup.object().shape({
 });
 
 function RegisterForm() {
-
   const router = useRouter();
+  const [registerData, setRegisterData] = useState({
+    name: "",
+    surname: "",
+    phone: "",
+    email: "",
+    password: "",
+    passwordConfirm: ""
+  });
+
   const { register, formState, handleSubmit } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
@@ -39,26 +47,6 @@ function RegisterForm() {
   const onSubmit = (data: FormInputs) => {
     console.log({name: data.name, lastname: data.lastname, phoneNumber: data.phoneNumber, email: data.email, password: data.password });
 
-
-  // const router = useRouter();
-  // const [name, setName] = useState("");
-  // const [lastname, setLastname] = useState("");
-  // const [phoneNum, setPhoneNum] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
-  // const [passwordConfirm, setPasswordConfirm] = useState("");
-
-  // const handleSubmit = async (e: any) => {
-  //   e.preventDefault();
-  //   setName("");
-  //   setLastname("");
-  //   setPhoneNum("");
-  //   setEmail("");
-  //   setPassword("");
-  //   setPasswordConfirm("");
-  //   console.log(name, lastname,phoneNum, email, password);
-
-  //   alert("Başarıyla kaydedildi..");
   };
 
   return (
@@ -187,9 +175,9 @@ function RegisterForm() {
         <div className="flex items-center justify-center">
           <button
             className="bg-[#4F46E5] hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            // onClick={() => router.push('/Home')}
+            onClick={() => router.push('/Home')}
           >
-            Kayıt Ol
+            Sign Up
           </button>
         </div>
       </form>

@@ -1,23 +1,23 @@
 import React, { useCallback, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import loginImage from "../assets/logo.png"
+import loginImage from "../assets/logo.png";
 import { useRouter } from "next/router";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import axios from "axios";
 
-//   Access-Control-Allow-Origin: *
 
 type FormInputs = {
   email: string;
   password: string;
 };
-const basePath = "https://assignment-api.piton.com.tr/api/v1/user/login";
+
+// const basePath = "https://assignment-api.piton.com.tr"
 // const loginApi = '/api/v1/user/login'
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lcm1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NzIxMzM2MiwiZXhwIjoxNjkzMTMzMzYyfQ.q8L1W7aKQZp_cGLY5l1y7-awjvxqC2Y5IWS-wFEVdtM";
+const basePath = "https://assignment-api.piton.com.tr/api/v1/user/login";
+const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5lcm1pbkB0ZXN0LmNvbSIsImlhdCI6MTY2NzIxMzM2MiwiZXhwIjoxNjkzMTMzMzYyfQ.q8L1W7aKQZp_cGLY5l1y7-awjvxqC2Y5IWS-wFEVdtM"
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -27,37 +27,40 @@ const validationSchema = Yup.object().shape({
   password: Yup.string()
     .required("Password is required")
     .min(6, "Password must be at least 6 characters")
-    .max(20, "password must be no more than 20 characters")
-    .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
+    .max(20, "password must be no more than 20 characters"),
+  // .matches(/[^a-z0-9]+/i, "password must be alphanumeric")
 });
 
 function LoginForm() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
 
-  
-  const { register, formState: {errors}, handleSubmit, reset} = useForm<FormInputs>({
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<FormInputs>({
     resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: FormInputs) => {
     console.log({ email: data.email, password: data.password });
     // setLogin();
-    reset()
-    router.push("/Home")
+    reset();
+    router.push("/Home");
   };
 
   axios
     .post(basePath, {
       headers: {
         "Content-Type": "application/json",
-        // "Access-Control-Allow-Origin": '*',
-        Authorization: `Bearer ${token}`,
+        // "Access-Control-Allow-Origin": "*",
+        // Authorization: `Bearer ${token}`,
+        "access-token": token,
       },
     })
     .then((res) => {
@@ -70,15 +73,11 @@ function LoginForm() {
   const handleChange = (e: any, data: any) => {
     e.preventDefault();
     data[e.target.id] = e.target.value;
-    setEmail("");
-    setPassword("");
   };
-  
 
   const onError = (errors: any) => {
     console.log(errors);
-    
-  }
+  };
 
   return (
     <div className="w-full max-w-sm">
@@ -107,9 +106,7 @@ function LoginForm() {
               handleChange(e, login);
             }}
           />
-          <p className="text-red-500 text-xs italic">
-            {errors.email?.message}
-          </p>
+          <p className="text-red-500 text-xs italic">{errors.email?.message}</p>
         </div>
 
         <div className="mb-6">
@@ -144,7 +141,7 @@ function LoginForm() {
             htmlFor="default-checkbox"
             className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
           >
-            Beni hatırla
+            Remember me!
           </label>
         </div>
 
@@ -154,7 +151,7 @@ function LoginForm() {
             rounded focus:outline-none focus:shadow-outline"
             type="submit"
           >
-            Giriş Yap
+            Sign In
           </button>
           <a
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"

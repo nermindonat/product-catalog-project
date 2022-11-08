@@ -8,7 +8,7 @@ Below are the interface pictures of my project.
 
                                                           LOGIN PAGE
 
-![image](https://user-images.githubusercontent.com/70170606/199501705-afe0a47e-47a0-4d16-89be-3cc9e1e9fdf8.png)
+![image](https://user-images.githubusercontent.com/70170606/200634811-ebaf8e64-ffd6-4a05-907e-b1268b167aa6.png)
 
 
 
@@ -21,7 +21,7 @@ Below are the interface pictures of my project.
 
                                                           REGISTER PAGE 
 
-![image](https://user-images.githubusercontent.com/70170606/199502224-6287997e-bd82-47aa-af72-852cde5b2fef.png)
+![image](https://user-images.githubusercontent.com/70170606/200634971-e28dd7ea-0e24-4bb0-803a-f65daf213f33.png)
 
 
 
